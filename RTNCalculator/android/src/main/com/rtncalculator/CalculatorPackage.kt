@@ -6,7 +6,24 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfoProvider
 
 class CalculatorPackage : TurboReactPackage() {
-  override fun getModule(name: String?, reactContext: ReactApplicationContext): NativeModule? = null
+  override fun getModule(name: String?, reactContext: ReactApplicationContext): NativeModule? =
+    if (name == DeviceModule.NAME) {
+        DeviceModule(reactContext)
+    } else {
+         null
+    }
 
-  override fun getReactModuleInfoProvider(): ReactModuleInfoProvider? = null
+  override fun getReactModuleInfoProvider(): ReactModuleInfoProvider? = {
+     mapOf(
+         DeviceModule.NAME to ReactModuleInfo(
+           DeviceModule.NAME,
+           DeviceModule.NAME,
+           false, // canOverrideExistingModule
+           false, // needsEagerInit
+           true, // hasConstants
+           false, // isCxxModule
+           true // isTurboModule
+         )
+       )
+  }
 }
