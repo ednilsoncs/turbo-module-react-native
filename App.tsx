@@ -16,8 +16,8 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  const onNativeSum = () => {
-    const value = RTNCalculator?.sub(1, 2);
+  const onNativeSum = async () => {
+    const value = await RTNCalculator?.sub(1, 6);
 
     console.log(value);
   };
